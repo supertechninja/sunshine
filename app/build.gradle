@@ -1,0 +1,90 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    compileSdkVersion 30
+
+    defaultConfig {
+        applicationId "com.mcwilliams.sunshine"
+        minSdkVersion 26
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerVersion "$kotlin_version"
+        kotlinCompilerExtensionVersion "$compose_version"
+    }
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+dependencies {
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.5.0-alpha01'
+    implementation 'androidx.appcompat:appcompat:1.3.0-alpha01'
+    implementation 'com.google.android.material:material:1.3.0'
+
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0'
+
+//    implementation "androidx.activity:activity-ktx:1.3.0-alpha04"
+    implementation "androidx.activity:activity-compose:1.3.0-alpha04"
+    implementation "androidx.fragment:fragment-ktx:1.3.1"
+
+    implementation "androidx.compose.foundation:foundation-layout:$compose_version"
+    implementation "androidx.compose.material:material:$compose_version"
+    implementation "androidx.compose.ui:ui-tooling:$compose_version"
+    implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
+    implementation "androidx.compose.runtime:runtime:$compose_version"
+
+    implementation "com.airbnb.android:lottie-compose:1.0.0-alpha07-SNAPSHOT"
+
+    implementation "androidx.constraintlayout:constraintlayout-compose:1.0.0-alpha05"
+
+    implementation "com.squareup.retrofit2:retrofit:2.6.1"
+    implementation "com.squareup.retrofit2:converter-gson:2.6.1"
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
+
+    implementation "dev.chrisbanes.accompanist:accompanist-coil:0.6.2"
+
+    //Dagger Hilt
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha01"
+    kapt "androidx.hilt:hilt-compiler:1.0.0-alpha01"
+
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}

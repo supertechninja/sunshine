@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Sunshine</string>
+    <string name="preference_file_key">weather_app</string>
+</resources>
